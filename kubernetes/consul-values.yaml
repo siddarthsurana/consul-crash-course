@@ -1,0 +1,35 @@
+global:
+  image: "hashicorp/consul:1.20.5"
+  peering:
+    enabled: true
+  acls:
+    enabled: true
+    manageSystemACLs: true
+  tls:
+    enabled: true
+
+server:
+  replicas: 1
+  bootstrapExpect: 1
+  extraConfig: |
+    {
+      "log_level": "TRACE"
+    }
+  storageClass: gp3
+
+connectInject:
+  enabled: true
+  default: true
+
+meshGateway:
+  enabled: true
+  replicas: 1
+
+controller:
+  enabled: true
+
+ui:
+  enabled: true
+  service:
+    enabled: true
+    type: LoadBalancer
